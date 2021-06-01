@@ -3,7 +3,7 @@ name: aws-ci
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy-csv-loder:
