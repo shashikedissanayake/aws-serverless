@@ -11,6 +11,10 @@ jobs:
     # if: (github.ref == 'refs/heads/develop')
 
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1
         with:
@@ -20,10 +24,6 @@ jobs:
           some_other_variable: foobar
           directory: .
           file_name: .env
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12'
 
       - name: print envs
         run: cat .env
