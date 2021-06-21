@@ -6,23 +6,20 @@ on:
       - main
 
 jobs:
-  create-envfile:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1
-      with:
-        envkey_DEBUG: false
-        envkey_SOME_API_KEY: ${{ secrets.test1 }}
-        envkey_SECRET_KEY: ${{ secrets.test }}
-        some_other_variable: foobar
-        directory: .
-        file_name: .env
   deploy-csv-loder:
     runs-on: ubuntu-latest
     # if: (github.ref == 'refs/heads/develop')
 
     steps:
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_SOME_API_KEY: ${{ secrets.test1 }}
+          envkey_SECRET_KEY: ${{ secrets.test }}
+          some_other_variable: foobar
+          directory: .
+          file_name: .env
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
