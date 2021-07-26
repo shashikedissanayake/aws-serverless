@@ -19,14 +19,16 @@ jobs:
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_DEBUG: false
-          envkey_SOME_API_KEY: ${{ secrets.test1 }}
+          envkey_SOME_API_KEY: ${{ secrets.PORT }}
           envkey_SECRET_KEY: ${{ secrets.test }}
           some_other_variable: foobar
           directory: .
           file_name: .env
 
-      - name: print envs
-        run: cat .env
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ./.env
 
       - name: Install Serverless Framework
         run: npm install -g serverless
